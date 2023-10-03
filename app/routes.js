@@ -5,7 +5,7 @@ const controller = require("./controller/index")
 /* route init */
 router.get('/products', controller.products);
 
-router.get('/checkoutorder', controller.checkoutorder);
+// router.get('/checkoutorder', controller.checkoutorder);
 
 router.post('/order', controller.order);
 
