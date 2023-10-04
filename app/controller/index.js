@@ -1,72 +1,116 @@
-const productsData = [
+// const productsData = [
+//   {
+//     id: 1,
+//     name: "Beach Shirt #01",
+//     imageSrc: "img/f1.jpg",
+//     price: "$15.99",
+//     stars: 5,
+//     categories: ["all", "best-sellers"],
+//   },
+//   {
+//     id: 2,
+//     name: "Beach Shirt #02",
+//     imageSrc: "img/f2.jpg",
+//     price: "$13.99",
+//     stars: 4.5,
+//     categories: ["all", "new"],
+//   },
+//   {
+//     id: 3,
+//     name: "Beach Shirt #03",
+//     imageSrc: "img/f3.jpg",
+//     price: "$14.99",
+//     stars: 4.5,
+//     categories: ["all", "new", "best-sellers"],
+//   },
+//   {
+//     id: 4,
+//     name: "Beach Shirt #04",
+//     imageSrc: "img/f4.jpg",
+//     price: "$14.99",
+//     stars: 4.5,
+//     categories: ["all", "new", "best-sellers"],
+//   },
+//   {
+//     id: 5,
+//     name: "Beach Shirt #05",
+//     imageSrc: "img/f5.jpg",
+//     price: "$15.99",
+//     stars: 4,
+//     categories: ["all", "new"],
+//   },
+//   {
+//     id: 6,
+//     name: "Flower Trouser",
+//     imageSrc: "img/f7.jpg",
+//     price: "$21.99",
+//     stars: 5,
+//     categories: ["all", "best-sellers", "specials"],
+//   },
+//   {
+//     id: 7,
+//     name: "Windy Shirt",
+//     imageSrc: "img/f8.jpg",
+//     price: "$14.99",
+//     stars: 5,
+//     categories: ["all", "best-sellers", "specials"],
+//   },
+//   {
+//     id: 8,
+//     name: "Grey Short Super Fluffy",
+//     imageSrc: "img/n6.jpg",
+//     price: "$19.99",
+//     stars: 4,
+//     categories: ["all", "best-sellers", "specials"],
+//   },
+// ];
+
+const orders = require('../model/orders');
+const productsData = require('../model/productsData');
+
+  const checkOut = [
     {
-      id: 1,
-      name: "Anggur",
-      imageSrc: "img/anggur.png",
-      price: "$3.99",
-      stars: 5,
-      categories: ["all"],
-    },
-    {
-      id: 2,
-      name: "Fresh Orange",
-      imageSrc: "img/jeruk.png",
-      price: "$3.99",
-      stars: 5,
-      categories: ["all", "new"],
-    },
-    {
-      id: 3,
-      name: "Watermelon",
-      imageSrc: "img/semangka.png",
-      price: "$3.99",
-      stars: 4.5,
-      categories: ["all", "new", "best-sellers"],
-    },
-    {
-      id: 4,
-      name: "Salak",
-      imageSrc: "img/salak.png",
-      price: "$4.99",
-      stars: 4,
-      categories: ["all", "new", "best-sellers", "specials"],
+
+      firstName: "ais",
+      lastName: "ais",
+      email: "ais",
+      phoneNumber: 3232,
+      address: "dirumah",
+      country: "usbekitan",
+      city: "bandung bet",
+      zip: 3232,
     }
-  ];
+  ]
 
-const customerOrderData = {}
+async function products(req, res) {
+    // res.json({
+    //     message: "halo cok"
+    // })
+    // return
+    try {
+      const products = await productsData.findOne();
+      res.json(products);
+  } catch (err) {
+      res.status(500).json({ error: err.message });
+  }
+}
 
-function products(req, res, next) {
+function order(req, res, next) {
     res.json({
-        productsData
+        message: "Halo ini order"
     })
     return
 }
 
-function order(req, res, next) {
-    customerOrderData.id = customerOrderData.length + 1;
-    customerOrderData.first_name = req.body.id_first_name;
-    customerOrderData.last_name = req.body.id_last_name;
-    customerOrderData.email = req.body.id_email;
-    customerOrderData.phone_number = req.body.id_phone_number;
-    customerOrderData.address = req.body.id_address;
-    customerOrderData.country = req.body.id_country;
-    customerOrderData.city = req.body.id_city;
-    customerOrderData.zip = req.body.id_zip;
-    customerOrderData.item = productsData[4];
-    res.json({
-        message: "Pesanan anda sedang di Proses",
-        customerOrderData
-    })
-}
-function customerOrder(req, res, next) {
+function checkoutorder(req, res, next){
   res.json({
-      customerOrderData
-  })
+    checkOut
+})
   return
 }
 
 module.exports =  {
 products,
 order,
-customerOrder
+checkoutorder,
 }

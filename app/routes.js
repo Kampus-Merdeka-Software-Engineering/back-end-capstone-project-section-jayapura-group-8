@@ -1,11 +1,14 @@
 const express = require('express');
 const router = express.Router();
 const controller = require("./controller/index")
+const orderController = require("./controller/orders")
 
 /* route init */
 router.get('/products', controller.products);
 
-router.post('/order', controller.order)
+// router.get('/checkoutorder', controller.checkoutorder);
+
+router.post('/order', orderController.orders);
 
 // self assignment
 // tambahkan 3 routes method get "/jayapura" -> res.json("ini jayapura") menggunakan middleware
