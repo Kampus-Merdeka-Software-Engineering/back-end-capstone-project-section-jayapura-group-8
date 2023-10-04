@@ -1,20 +1,16 @@
 const express = require('express');
 const router = express.Router();
-const controller = require("./controller/index")
+const controller = require("./controller/products")
 
 /* route init */
-router.get('/products', controller.products);
+// router.post('/products', controller.addProduct);
+router.get('/products', controller.getAllProducts);
+router.get('/products/:category', controller.getProductsByCategory);
+// router.put('/products:/id', controller.updateProductById);
+// router.delete('products:/id', controller.deleteProductById);
 
 // router.get('/checkoutorder', controller.checkoutorder);
 
-router.post('/order', controller.order);
-
-// self assignment
-// tambahkan 3 routes method get "/jayapura" -> res.json("ini jayapura") menggunakan middleware
-// tambahkan 3 routes method post "/semarang" -> res.json("ini semarang") tidak menggunakan middleware
-// tambahkan 3 routes method delete "/jakarta" -> res.json("ini jakarta") tidak menggunakan middleware
-
-// self assignment 2
-// bisa routes dan controller untuk operasi kurang, kali dan bagi
+// router.post('/order', controller.order);
 
 module.exports = router
