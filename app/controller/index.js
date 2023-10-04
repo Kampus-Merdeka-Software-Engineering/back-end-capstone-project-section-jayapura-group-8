@@ -65,7 +65,7 @@
 //   },
 // ];
 
-const productsData = require('../model/productsData');
+const productsData = require('../model/productsdata');
 
   const checkOut = [
     {
