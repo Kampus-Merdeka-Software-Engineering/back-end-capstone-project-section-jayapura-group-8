@@ -33,6 +33,8 @@ const productsData = [
     }
   ];
 
+const customerOrderData = {}
+
 function products(req, res, next) {
     res.json({
         productsData
@@ -41,13 +43,30 @@ function products(req, res, next) {
 }
 
 function order(req, res, next) {
+    customerOrderData.id = customerOrderData.length + 1;
+    customerOrderData.first_name = req.body.id_first_name;
+    customerOrderData.last_name = req.body.id_last_name;
+    customerOrderData.email = req.body.id_email;
+    customerOrderData.phone_number = req.body.id_phone_number;
+    customerOrderData.address = req.body.id_address;
+    customerOrderData.country = req.body.id_country;
+    customerOrderData.city = req.body.id_city;
+    customerOrderData.zip = req.body.id_zip;
+    customerOrderData.item = productsData[4];
     res.json({
-        message: "Halo ini order"
+        message: "Pesanan anda sedang di Proses",
+        customerOrderData
     })
-    return
+}
+function customerOrder(req, res, next) {
+  res.json({
+      customerOrderData
+  })
+  return
 }
 
 module.exports =  {
 products,
-order
+order,
+customerOrder
 }
