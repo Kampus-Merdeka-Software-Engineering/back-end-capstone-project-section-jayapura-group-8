@@ -33,35 +33,49 @@ function getAllProducts(req, res) {
     });
 }
 
-// Fungsi untuk mengambil produk berdasarkan kategori
-function getProductsByCategory(req, res) {
-    const category = req.params.category;
-  
-    // Gunakan Sequelize atau metode lain untuk mengambil produk berdasarkan kategori
-    product.findAll({ where: { categories: category } })
-      .then(data => {
-        if (data.length === 0) {
-          return res.status(404).json({
-            success: false,
-            message: 'No products found for the specified category.',
-          });
-        }
-        
-        res.status(200).json({
-          success: true,
-          message: 'Data fetched successfully!',
-          productsData: data,
-        });
-      })
-      .catch(err => {
-        res.status(500).json({
-          success: false,
-          message: 'Unsuccessful',
-          error: err,
-        });
-      });
-  }
-  
+// function getProductsByCategory(req, res) {
+//     const category = req.params.category;
+//     const filteredProducts = productsData.filter((product) =>
+//         product.categories.includes(category)
+//     );
+//     res.json({
+//       filteredProducts
+//     })
+//     return
+// }
+
+// // Fungsi untuk mengambil produk berdasarkan kategori
+// function getProductsByCategory(req, res, next){
+//     const category = req.query;
+
+//     if (!category) {
+//         return res.status(400).json({
+//           success: false,
+//           message: 'Category parameter is required.',
+//         });
+//     }
+//     else{
+//         product.findAll({
+//             where: {
+//                 categories: category
+//             }
+//         })
+//         .then(function(data){
+//             res.status(200).json({
+//                 success: true,
+//                 message: "Data fetched successfully!",
+//                 productsData: data,
+//             });
+//         })
+//         .catch(function(err){
+//             res.status(500).json({
+//                 success: false,
+//                 message: "Unsuccessful",
+//                 error: err,
+//             });
+//         });
+//     }
+// }
 
 // // Fungsi untuk mengambil produk berdasarkan kategori
 // async function getProductsByCategory(req, res) {
@@ -128,7 +142,7 @@ function getProductsByCategory(req, res) {
 module.exports = {
     // addProduct,
     getAllProducts,
-    getProductsByCategory,
+    // getProductsByCategory,
     // updateProductById,
     // deleteProductById
 }
