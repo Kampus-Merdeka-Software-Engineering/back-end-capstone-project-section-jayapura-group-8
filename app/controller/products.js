@@ -1,4 +1,4 @@
-const productsData = require('../model/products')
+const product = require('../model/products')
 
 // // Fungsi untuk menambahkan produk baru
 // async function addProduct(req, res, next){
@@ -15,37 +15,74 @@ const productsData = require('../model/products')
 // }
 
 // Fungsi untuk mengambil semua produk
-async function getAllProducts(req, res) {
-    try {
-        const products = await productsData.findAll();
-        res.json(products);
-    } catch (error) {
-        res.status(500).json({
-            error: "Gagal mengambil produk."
+function getAllProducts(req, res) {
+    product.findAll()
+    .then(function(data){
+        res.status(200).json({
+            success: true,
+            message: "Data fetched successfully!",
+            productsData: data,
         });
-    }
+    })
+    .catch(function(err){
+        res.status(500).json({
+            success: false,
+            message: "Unsuccessful",
+            error: err,
+        });
+    });
 }
 
 // Fungsi untuk mengambil produk berdasarkan kategori
-async function getProductsByCategory(req, res) {
-    try {
-        const category = req.params.category;
-        const products = await productsData.findAll({
-            where: {
-                categories: {
-                    [Op.contains]: [category],
-                },
-            },
+function getProductsByCategory(req, res) {
+    const category = req.params.category;
+  
+    // Gunakan Sequelize atau metode lain untuk mengambil produk berdasarkan kategori
+    product.findAll({ where: { categories: category } })
+      .then(data => {
+        if (data.length === 0) {
+          return res.status(404).json({
+            success: false,
+            message: 'No products found for the specified category.',
+          });
+        }
+        
+        res.status(200).json({
+          success: true,
+          message: 'Data fetched successfully!',
+          productsData: data,
         });
-        if (!products || products.length === 0) {
-            res.status(404).json({ error: 'Produk tidak ditemukan.' });
-        } else {
-            res.json(products);
-        } 
-    } catch (error) {
-        res.status(500).json({ error: 'Gagal mengambil produk.' });
-    }
-}
+      })
+      .catch(err => {
+        res.status(500).json({
+          success: false,
+          message: 'Unsuccessful',
+          error: err,
+        });
+      });
+  }
+  
+
+// // Fungsi untuk mengambil produk berdasarkan kategori
+// async function getProductsByCategory(req, res) {
+//     try {
+//         const category = req.params.category;
+//         const products = await productsData.findAll({
+//             where: {
+//                 categories: {
+//                     [Op.contains]: [category],
+//                 },
+//             },
+//         });
+//         if (!products || products.length === 0) {
+//             res.status(404).json({ error: 'Produk tidak ditemukan.' });
+//         } else {
+//             res.json(products);
+//         } 
+//     } catch (error) {
+//         res.status(500).json({ error: 'Gagal mengambil produk.' });
+//     }
+// }
 
 // // Fungsi untuk mengupdate produk berdasarkan ID
 // async function updateProductById(req, res) {
