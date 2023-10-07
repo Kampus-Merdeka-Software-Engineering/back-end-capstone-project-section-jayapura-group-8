@@ -87,6 +87,7 @@ async function createOrder(req, res, next) {
       const orderItemData = {
         product_id: element.productId,
         quantity: element.quantity,
+        total_price_item: element.total_price_item,
         order_id: createdOrder.Order_id, // Assuming "id" is the primary key of the order
       };
   
