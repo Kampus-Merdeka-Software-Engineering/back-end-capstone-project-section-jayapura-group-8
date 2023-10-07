@@ -20,7 +20,7 @@ app.use(express.urlencoded({ extended: false })); // supaya express bisa menerim
 app.use("/", mainRouter);
 
 const port = process.env.PORT || 3000;
-app.listen(port, function(){
+app.listen(port, "0.0.0.0", function(){
     console.log("server start on", port)
     connection.authenticate()
     .then(function(){
