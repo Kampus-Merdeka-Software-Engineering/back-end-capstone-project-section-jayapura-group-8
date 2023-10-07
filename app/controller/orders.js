@@ -45,6 +45,7 @@ async function createOrder(req, res, next) {
       promises.push(orderItem.create(orderItemData));
     }
   
+    // tes
     // Use Promise.all to execute all the promises concurrently
     await Promise.all(promises);
   }
