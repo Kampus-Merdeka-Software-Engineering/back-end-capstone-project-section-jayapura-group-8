@@ -21,7 +21,7 @@ async function createOrder(req, res, next) {
     await createOrderItem(req.body.items, createdOrder);
 
     // Include the order_id in the response
-    res.json({ order_id: createdOrder.order_id }); // Assuming the order_id is available on the createdOrder object
+    res.json({ order_id: createdOrder.Order_id }); // Assuming the order_id is available on the createdOrder object
 
   } catch (error) {
     // Handle any errors here
