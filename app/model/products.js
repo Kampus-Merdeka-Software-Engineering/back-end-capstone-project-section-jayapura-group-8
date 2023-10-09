@@ -12,38 +12,5 @@ const products = connection.define("productsData", {
     freezeTableName: true,
     timestamps: false
 })
-// const { DataTypes } = require('sequelize');
-// const sequelize = require('./index');
-
-// const productsData = sequelize.define('productsData', {
-//     name: {
-//         type: DataTypes.STRING,
-//         allowNull: false,
-//     },
-//     imageSrc: {
-//         type: DataTypes.TEXT,
-//         allowNull: true,
-//     },
-//     price: {
-//         type: DataTypes.DOUBLE,
-//         allowNull: false,
-//     },
-//     stars: {
-//         type: DataTypes.DOUBLE,
-//         allowNull: false,
-//     },
-//     categories: {
-//         type: DataTypes.JSON,
-//         allowNull: true,
-//     },
-    // updatedAt: {
-    //     type: DataTypes.STRING,
-    //     allowNull:true
-    // },
-    // createdAt: {
-    //     type: DataTypes.STRING,
-    //     allowNull:true
-    // }
-// });
 
 module.exports = products
