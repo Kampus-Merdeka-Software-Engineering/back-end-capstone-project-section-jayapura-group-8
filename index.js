@@ -12,11 +12,6 @@ app.use(cors());
 app.use(express.json()); // supaya express bisa response json
 app.use(express.urlencoded({ extended: false })); // supaya express bisa menerima body
 
-// app.use(function(req,res,next){
-//     console.log("ini middleware")
-// })
-
-// http router
 app.use("/", mainRouter);
 
 const port = process.env.PORT || 3000;

@@ -30,25 +30,24 @@ async function createOrder(req, res, next) {
   }
 }
   
-  async function createOrderItem(orderItems, createdOrder) {
-    const promises = [];
+async function createOrderItem(orderItems, createdOrder) {
+  const promises = [];
   
-    for (const element of orderItems) {
-      const orderItemData = {
-        product_id: element.productId,
-        quantity: element.quantity,
-        total_price_item: element.total_price_item,
-        order_id: createdOrder.Order_id, // Assuming "id" is the primary key of the order
-      };
+  for (const element of orderItems) {
+    const orderItemData = {
+      product_id: element.productId,
+      quantity: element.quantity,
+      total_price_item: element.total_price_item,
+      order_id: createdOrder.Order_id, // Assuming "id" is the primary key of the order
+    };
   
-      // Push the promise into the array
-      promises.push(orderItem.create(orderItemData));
-    }
-  
-    // tes
-    // Use Promise.all to execute all the promises concurrently
-    await Promise.all(promises);
+    // Push the promise into the array
+    promises.push(orderItem.create(orderItemData));
   }
+  
+  // Use Promise.all to execute all the promises concurrently
+  await Promise.all(promises);
+}
 
 module.exports = {
     createOrder
